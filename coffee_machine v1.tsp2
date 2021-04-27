@@ -10,9 +10,14 @@
                </property>
                <scripts/>
             </objectView>
-            <objectView class="tesla.scada2.model.objects.ConeTankView" name="Cone tank" posx="490.0" posy="140.0" width="160.0" height="160.0" angle="0" lock="false" text="Coffee, g" color="0x808080ff" fillcolor="0xe6e6b3ff" type3d="0" fontsize="0">
+            <objectView class="tesla.scada2.model.objects.ConeTankView" name="Cone tank" posx="493.0" posy="140.0" width="160.0" height="160.0" angle="0" lock="false" text="Coffee, g" color="0x8a6115ff" fillcolor="0x684e06ff" type3d="0" fontsize="0">
                <property key="filling">
                   <property class="tesla.scada2.model.properties.FillingProperty" tagname="CoffeeTankQuantity" minimumvalue="0.0" maximumvalue="500.0"/>
+               </property>
+               <property key="fillcolor">
+                  <property class="tesla.scada2.model.properties.FillColorProperty" tagname="PumpCoffee" value="0" type="0" truecolor="0xff0000ff" falsecolor="0x008000ff">
+                     <colorrange/>
+                  </property>
                </property>
                <scripts/>
             </objectView>
@@ -28,7 +33,7 @@
             <objectView class="tesla.scada2.model.objects.ValvePositionView" name="Position valve1" posx="178.0" posy="370.0" width="83.0" height="46.0" angle="270" lock="false" fillcolor="0xd3d3d3ff" type3d="0" indicatorcolor="0x008000ff">
                <scripts/>
             </objectView>
-            <objectView class="tesla.scada2.model.objects.ToggleButtonView" name="Toggle button" posx="29.0" posy="38.0" width="100.0" height="40.0" angle="0" lock="false" text="OFF" textcolor="0x008000ff" fillcolor="0xd3d3d3ff" type3d="0" fonttype="0" fontsize="0" textplacement="1" animation="true" underline="false">
+            <objectView class="tesla.scada2.model.objects.ToggleButtonView" name="Toggle button" posx="37.0" posy="39.0" width="110.0" height="50.0" angle="0" lock="false" text="OFF" textcolor="0x008000ff" fillcolor="0xd3d3d3ff" type3d="1" fonttype="0" fontsize="0" textplacement="1" animation="true" underline="false">
                <property key="indicator">
                   <property class="tesla.scada2.model.properties.IndicatorProperty" tagname="PowerOn" value="true" type="0"/>
                </property>
@@ -38,7 +43,7 @@
                   </property>
                </property>
                <property key="textcolor">
-                  <property class="tesla.scada2.model.properties.TextColorProperty" tagname="PowerOn" value="true" type="0" truecolor="0x000000ff" falsecolor="0x008000ff">
+                  <property class="tesla.scada2.model.properties.TextColorProperty" tagname="PowerOn" value="true" type="0" truecolor="0xff0000ff" falsecolor="0xffffffff">
                      <colorrange/>
                   </property>
                </property>
@@ -58,7 +63,7 @@
                </property>
                <scripts/>
             </objectView>
-            <objectView class="tesla.scada2.model.objects.ButtonView" name="Button" posx="215.0" posy="42.0" width="100.0" height="40.0" angle="0" lock="false" text="Start" textcolor="0xffffffff" fillcolor="0x008000ff" type3d="0" fonttype="0" fontsize="0" textplacement="1" animation="true" underline="false">
+            <objectView class="tesla.scada2.model.objects.ButtonView" name="Button" posx="182.0" posy="42.0" width="115.0" height="48.0" angle="0" lock="false" text="Start" textcolor="0xffffffff" fillcolor="0x008000ff" type3d="1" fonttype="0" fontsize="0" textplacement="1" animation="true" underline="false">
                <property key="buttoncontrol">
                   <property class="tesla.scada2.model.properties.ButtonControlProperty" tagname="PreparingCoffee" functiontype="2" value="0" title="Enter value" screenname="" command=""/>
                </property>
@@ -114,7 +119,7 @@
                </property>
                <scripts/>
             </objectView>
-            <objectView class="tesla.scada2.model.objects.Text3DView" name="Text/EditField 3D" posx="487.0" posy="85.0" width="153.0" height="80.0" angle="0" lock="false" text="Coffee, g" fonttype="0" fontsize="30" textplacement="1" textcolor="0x0000ffff" useborder="false" bordercolor="0x808080ff" linewidth="8" fill="false" fillcolor="0x000000ff" underline="false">
+            <objectView class="tesla.scada2.model.objects.Text3DView" name="Text/EditField 3D" posx="494.0" posy="80.0" width="153.0" height="80.0" angle="0" lock="false" text="Coffee, g" fonttype="10" fontsize="30" textplacement="1" textcolor="0xcc6633ff" useborder="false" bordercolor="0x808080ff" linewidth="8" fill="false" fillcolor="0x000000ff" underline="false">
                <scripts/>
             </objectView>
             <objectView class="tesla.scada2.model.objects.ValvePositionView" name="Position valve2" posx="767.0" posy="308.0" width="86.0" height="46.0" angle="270" lock="false" fillcolor="0xd3d3d3ff" type3d="0" indicatorcolor="0x008000ff">
@@ -123,10 +128,10 @@
             <objectView class="tesla.scada2.model.objects.StraightPipeView" name="Straight3" posx="754.0" posy="389.0" width="141.0" height="73.0" angle="270" lock="false" fillcolor="0x808080ff" type3d="0">
                <scripts/>
             </objectView>
-            <objectView class="tesla.scada2.model.objects.ElbowPipeView" name="Elbow2" posx="735.0" posy="530.0" width="69.0" height="69.0" angle="0" lock="false" fillcolor="0x808080ff" type3d="0">
+            <objectView class="tesla.scada2.model.objects.ElbowPipeView" name="Elbow2" posx="734.0" posy="529.0" width="69.0" height="69.0" angle="0" lock="false" fillcolor="0x808080ff" type3d="0">
                <scripts/>
             </objectView>
-            <objectView class="tesla.scada2.model.objects.StraightPipeView" name="Straight4" posx="595.0" posy="550.0" width="141.0" height="73.0" angle="0" lock="false" fillcolor="0x808080ff" type3d="0">
+            <objectView class="tesla.scada2.model.objects.StraightPipeView" name="Straight4" posx="594.0" posy="549.0" width="141.0" height="73.0" angle="0" lock="false" fillcolor="0x808080ff" type3d="0">
                <scripts/>
             </objectView>
             <objectView class="tesla.scada2.model.objects.ElbowPipeView" name="Elbow3" posx="525.0" posy="571.0" width="69.0" height="69.0" angle="180" lock="false" fillcolor="0x808080ff" type3d="0">
@@ -176,15 +181,45 @@
                   </objectView>
                </objects>
             </objectView>
-            <objectView class="tesla.scada2.model.objects.OvalJumpButtonView" name="Oval jump" posx="1050.0" posy="252.0" width="50.0" height="40.0" angle="0" lock="false" text="Screen" textcolor="0xff0000ff" fillcolor="0xd3d3d3ff" type3d="0" fonttype="0" fontsize="0" textplacement="1" animation="true" underline="false">
+            <objectView class="tesla.scada2.model.objects.OvalJumpButtonView" name="Oval jump" posx="337.0" posy="40.0" width="95.0" height="59.0" angle="0" lock="false" text="Reset" textcolor="0xffffffff" fillcolor="0xb31a1aff" type3d="1" fonttype="5" fontsize="20" textplacement="1" animation="true" underline="false">
                <property key="buttoncontrol">
-                  <property class="tesla.scada2.model.properties.ButtonControlProperty" tagname="Reset" functiontype="3" value="0" title="Enter value" command=""/>
+                  <property class="tesla.scada2.model.properties.ButtonControlProperty" tagname="Reset" functiontype="3" value="0" title="Enter value" screenname="" command=""/>
                </property>
                <scripts/>
             </objectView>
-            <objectView class="tesla.scada2.model.objects.ConeTankView" name="Cone tank1" posx="335.0" posy="700.0" width="325.0" height="289.0" angle="180" lock="false" text="Value" color="0x808080ff" fillcolor="0x0000ffff" type3d="0" fontsize="0">
+            <objectView class="tesla.scada2.model.objects.ConeTankView" name="Cone tank1" posx="297.0" posy="655.0" width="325.0" height="289.0" angle="180" lock="false" text="Value" color="0x808080ff" fillcolor="0x0000ffff" type3d="0" fontsize="0">
                <property key="filling">
                   <property class="tesla.scada2.model.properties.FillingProperty" tagname="CoffeeInCup" minimumvalue="0.0" maximumvalue="200.0"/>
+               </property>
+               <scripts/>
+            </objectView>
+            <objectView class="tesla.scada2.model.objects.RectangleIndicatorView" name="Rectangle Indicator" posx="32.0" posy="461.0" width="29.0" height="28.0" angle="0" lock="false" falsecolor="0xff0000ff" truecolor="0x008000ff" type3d="0">
+               <property key="indicator">
+                  <property class="tesla.scada2.model.properties.IndicatorProperty" tagname="PumpWater" value="0" type="5"/>
+               </property>
+               <scripts/>
+            </objectView>
+            <objectView class="tesla.scada2.model.objects.RectangleIndicatorView" name="Rectangle Indicator1" posx="400.0" posy="395.0" width="28.0" height="25.0" angle="0" lock="false" falsecolor="0xff0000ff" truecolor="0x008000ff" type3d="0">
+               <property key="indicator">
+                  <property class="tesla.scada2.model.properties.IndicatorProperty" tagname="PumpCoffee" value="0" type="5"/>
+               </property>
+               <scripts/>
+            </objectView>
+            <objectView class="tesla.scada2.model.objects.TextView" name="Text/EditField" posx="708.0" posy="80.0" width="171.0" height="80.0" angle="0" lock="false" text="Milk, ml" fonttype="10" fontsize="30" textplacement="1" textcolor="0xffffffff" useborder="false" bordercolor="0x000000ff" linewidth="2" fill="false" fillcolor="0xffffffff" underline="false">
+               <scripts/>
+            </objectView>
+            <objectView class="tesla.scada2.model.objects.TextView" name="Text/EditField1" posx="134.0" posy="82.0" width="146.0" height="80.0" angle="0" lock="false" text="Water, ml" fonttype="10" fontsize="30" textplacement="1" textcolor="0x4d66ccff" useborder="false" bordercolor="0x000000ff" linewidth="2" fill="false" fillcolor="0xffffffff" underline="false">
+               <scripts/>
+            </objectView>
+            <objectView class="tesla.scada2.model.objects.RectangleIndicatorView" name="Rectangle Indicator2" posx="873.0" posy="211.0" width="40.0" height="34.0" angle="0" lock="false" falsecolor="0xff0000ff" truecolor="0x008000ff" type3d="0">
+               <property key="indicator">
+                  <property class="tesla.scada2.model.properties.IndicatorProperty" tagname="PumpMilk" value="0" type="5"/>
+               </property>
+               <scripts/>
+            </objectView>
+            <objectView class="tesla.scada2.model.objects.OvalLightButtonView" name="Oval light button" posx="872.0" posy="257.0" width="50.0" height="40.0" angle="0" lock="false" text="ON" textcolor="0xffffffff" fillcolor="0x0000ffff" type3d="0" fonttype="0" fontsize="0" textplacement="1" animation="true" underline="false">
+               <property key="buttoncontrol">
+                  <property class="tesla.scada2.model.properties.ButtonControlProperty" tagname="PumpMilk" functiontype="4" value="1" title="Enter value" screenname="" command=""/>
                </property>
                <scripts/>
             </objectView>
@@ -196,9 +231,7 @@
       <script name="Script0" color="0xd3d3d3ff" type="0" windowheight="600" windowwidth="800" groupname="" subgroupname="" language="1" everycycle="false" extype="0">
          <objects/>
          <links/>
-         <sttext>
-
-if (Tags.PowerOn ) {
+         <sttext>if (Tags.PowerOn ) {
 	// 1st stage
 	if(Tags.PumpWater) {
 		if(Tags.WaterAdded &lt; Tags.WaterToAdd) {
@@ -263,7 +296,7 @@ if (Tags.PowerOn ) {
                <value>PowerOn</value>
             </opcode>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
-               <value>128</value>
+               <value>105</value>
             </opcode>
             <opcode type="LOAD_TAG" datatype="-1">
                <value>PumpWater</value>
@@ -277,9 +310,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterAdded</value>
             </opcode>
-            <opcode type="BINARY_LT" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_LT" datatype="-1"/>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>14</value>
             </opcode>
@@ -289,9 +320,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTankQuantity</value>
             </opcode>
-            <opcode type="BINARY_REM" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_REM" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>WaterTankQuantity</value>
             </opcode>
@@ -301,9 +330,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterAdded</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>WaterAdded</value>
             </opcode>
@@ -313,9 +340,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
@@ -340,9 +365,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeAdded</value>
             </opcode>
-            <opcode type="BINARY_LT" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_LT" datatype="-1"/>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>14</value>
             </opcode>
@@ -352,9 +375,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeTankQuantity</value>
             </opcode>
-            <opcode type="BINARY_REM" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_REM" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>CoffeeTankQuantity</value>
             </opcode>
@@ -364,9 +385,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeAdded</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>CoffeeAdded</value>
             </opcode>
@@ -376,9 +395,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeInFilter</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>CoffeeInFilter</value>
             </opcode>
@@ -391,96 +408,21 @@ if (Tags.PowerOn ) {
             <opcode type="STORE_TAG" datatype="-1">
                <value>PumpCoffee</value>
             </opcode>
-            <opcode type="LOAD_TAG" datatype="-1">
-               <value>PumpMilk</value>
-            </opcode>
-            <opcode type="JUMP_IF_FALSE" datatype="-1">
-               <value>22</value>
-            </opcode>
-            <opcode type="LOAD_TAG" datatype="-1">
-               <value>MilkToAdd</value>
-            </opcode>
-            <opcode type="LOAD_TAG" datatype="-1">
-               <value>MilkAdded</value>
-            </opcode>
-            <opcode type="BINARY_LT" datatype="-1">
-               <value></value>
-            </opcode>
-            <opcode type="JUMP_IF_FALSE" datatype="-1">
-               <value>14</value>
-            </opcode>
-            <opcode type="LOAD_CONST" datatype="4">
-               <value>20</value>
-            </opcode>
-            <opcode type="LOAD_TAG" datatype="-1">
-               <value>MilkTankQuantity</value>
-            </opcode>
-            <opcode type="BINARY_REM" datatype="-1">
-               <value></value>
-            </opcode>
-            <opcode type="STORE_TAG" datatype="-1">
-               <value>MilkTankQuantity</value>
-            </opcode>
-            <opcode type="LOAD_CONST" datatype="4">
-               <value>20</value>
-            </opcode>
-            <opcode type="LOAD_TAG" datatype="-1">
-               <value>MilkAdded</value>
-            </opcode>
-            <opcode type="BINARY_ADD" datatype="-1">
-               <value></value>
-            </opcode>
-            <opcode type="STORE_TAG" datatype="-1">
-               <value>MilkAdded</value>
-            </opcode>
-            <opcode type="LOAD_CONST" datatype="4">
-               <value>20</value>
-            </opcode>
-            <opcode type="LOAD_TAG" datatype="-1">
-               <value>CoffeeInCup</value>
-            </opcode>
-            <opcode type="BINARY_ADD" datatype="-1">
-               <value></value>
-            </opcode>
-            <opcode type="STORE_TAG" datatype="-1">
-               <value>CoffeeInCup</value>
-            </opcode>
-            <opcode type="JUMP" datatype="-1">
-               <value>5</value>
-            </opcode>
-            <opcode type="LOAD_CONST" datatype="0">
-               <value>false</value>
-            </opcode>
-            <opcode type="STORE_TAG" datatype="-1">
-               <value>PumpMilk</value>
-            </opcode>
-            <opcode type="LOAD_CONST" datatype="0">
-               <value>true</value>
-            </opcode>
-            <opcode type="STORE_TAG" datatype="-1">
-               <value>MilkFinished</value>
-            </opcode>
             <opcode type="LOAD_CONST" datatype="4">
                <value>100</value>
             </opcode>
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
-            <opcode type="BINARY_LTE" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_LTE" datatype="-1"/>
             <opcode type="LOAD_CONST" datatype="4">
                <value>0</value>
             </opcode>
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
-            <opcode type="BINARY_GT" datatype="-1">
-               <value></value>
-            </opcode>
-            <opcode type="BINARY_AND" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_GT" datatype="-1"/>
+            <opcode type="BINARY_AND" datatype="-1"/>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>5</value>
             </opcode>
@@ -490,9 +432,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
@@ -502,33 +442,23 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeAdded</value>
             </opcode>
-            <opcode type="BINARY_GTE" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_GTE" datatype="-1"/>
             <opcode type="LOAD_CONST" datatype="4">
                <value>0</value>
             </opcode>
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
-            <opcode type="BINARY_GT" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_GT" datatype="-1"/>
             <opcode type="LOAD_CONST" datatype="4">
                <value>100</value>
             </opcode>
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
-            <opcode type="BINARY_GTE" datatype="-1">
-               <value></value>
-            </opcode>
-            <opcode type="BINARY_AND" datatype="-1">
-               <value></value>
-            </opcode>
-            <opcode type="BINARY_AND" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_GTE" datatype="-1"/>
+            <opcode type="BINARY_AND" datatype="-1"/>
+            <opcode type="BINARY_AND" datatype="-1"/>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>9</value>
             </opcode>
@@ -538,9 +468,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
-            <opcode type="BINARY_REM" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_REM" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
@@ -550,9 +478,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeInCup</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>CoffeeInCup</value>
             </opcode>
@@ -562,21 +488,15 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
-            <opcode type="BINARY_LTE" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_LTE" datatype="-1"/>
             <opcode type="LOAD_CONST" datatype="4">
                <value>100</value>
             </opcode>
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
-            <opcode type="BINARY_GTE" datatype="-1">
-               <value></value>
-            </opcode>
-            <opcode type="BINARY_AND" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_GTE" datatype="-1"/>
+            <opcode type="BINARY_AND" datatype="-1"/>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>3</value>
             </opcode>
@@ -592,21 +512,15 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
-            <opcode type="BINARY_GT" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_GT" datatype="-1"/>
             <opcode type="LOAD_CONST" datatype="4">
                <value>0</value>
             </opcode>
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
-            <opcode type="BINARY_LTE" datatype="-1">
-               <value></value>
-            </opcode>
-            <opcode type="BINARY_AND" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_LTE" datatype="-1"/>
+            <opcode type="BINARY_AND" datatype="-1"/>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>7</value>
             </opcode>
@@ -616,9 +530,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
-            <opcode type="BINARY_REM" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_REM" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
@@ -634,9 +546,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeFinished</value>
             </opcode>
-            <opcode type="BINARY_AND" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_AND" datatype="-1"/>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>3</value>
             </opcode>

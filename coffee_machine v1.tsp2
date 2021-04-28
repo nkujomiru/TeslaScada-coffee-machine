@@ -98,22 +98,6 @@
             <objectView class="tesla.scada2.model.objects.CylinderView" name="Cylinder" posx="405.0" posy="576.0" width="100.0" height="27.0" angle="0" lock="false" color="0x000000ff" linewidth="1" fill="true" fillcolor="0x808080ff">
                <scripts/>
             </objectView>
-            <objectView class="tesla.scada2.model.objects.ConeView" name="Cone1" posx="700.0" posy="670.0" width="173.0" height="202.0" angle="180" lock="false" color="0x1a1a1aff" linewidth="2" fill="false" fillcolor="0xb31a1aff" aspectratio="50.0">
-               <property key="filling">
-                  <property class="tesla.scada2.model.properties.FillingProperty" tagname="CoffeeInCup" minimumvalue="0.0" maximumvalue="100.0"/>
-               </property>
-               <property key="fillcolor">
-                  <property class="tesla.scada2.model.properties.FillColorProperty" tagname="CoffeeAdded" value="0" type="0" truecolor="0xff0000ff" falsecolor="0x008000ff">
-                     <colorrange/>
-                  </property>
-               </property>
-               <property key="linecolor">
-                  <property class="tesla.scada2.model.properties.LineColorProperty" tagname="CoffeeFinished" value="0" type="0" truecolor="0xff0000ff" falsecolor="0x008000ff">
-                     <colorrange/>
-                  </property>
-               </property>
-               <scripts/>
-            </objectView>
             <objectView class="tesla.scada2.model.objects.Text3DView" name="Text/EditField 3D" posx="489.0" posy="78.0" width="159.0" height="81.0" angle="0" lock="false" text="Coffee" fonttype="10" fontsize="30" textplacement="1" textcolor="0xb34d1aff" useborder="false" bordercolor="0x808080ff" linewidth="8" fill="false" fillcolor="0x000000ff" underline="false">
                <scripts/>
             </objectView>
@@ -132,10 +116,10 @@
             <objectView class="tesla.scada2.model.objects.ElbowPipeView" name="Elbow3" posx="525.0" posy="571.0" width="69.0" height="69.0" angle="180" lock="false" fillcolor="0x808080ff" type3d="0">
                <scripts/>
             </objectView>
-            <objectView class="tesla.scada2.model.objects.GroupObjectView" name="Group Object" posx="160.0" posy="679.0" width="181.0" height="104.0" angle="0" lock="false">
+            <objectView class="tesla.scada2.model.objects.GroupObjectView" name="Group Object" posx="149.0" posy="674.0" width="207.0" height="125.0" angle="0" lock="false">
                <scripts/>
                <objects>
-                  <objectView class="tesla.scada2.model.objects.HorizontalTankWithTrendView" name="Horizontal tank with trend" posx="0.0" posy="0.0" width="181.0" height="104.0" angle="0" lock="false" text="Value" color="0xb3b3b3ff" fillcolor="0x0037ffff" type3d="0" fontsize="0">
+                  <objectView class="tesla.scada2.model.objects.HorizontalTankWithTrendView" name="Horizontal tank with trend" posx="0.0" posy="0.0" width="207.0" height="125.0" angle="0" lock="false" text="Value" color="0xb3b3b3ff" fillcolor="0x0037ffff" type3d="0" fontsize="0">
                      <property key="filling">
                         <property class="tesla.scada2.model.properties.FillingProperty" tagname="WaterInBoiler" minimumvalue="0.0" maximumvalue="200.0"/>
                      </property>
@@ -146,7 +130,7 @@
                      </property>
                      <scripts/>
                   </objectView>
-                  <objectView class="tesla.scada2.model.objects.AnalogMeterView" name="Analog meter" posx="16.0" posy="8.0" width="87.0" height="87.0" angle="0" lock="false" color="0x0000ffff" fillcolor="0x808080ff" text="Label">
+                  <objectView class="tesla.scada2.model.objects.AnalogMeterView" name="Analog meter" posx="18.0" posy="9.0" width="119.0" height="119.0" angle="0" lock="false" color="0x0000ffff" fillcolor="0x808080ff" text="Label">
                      <property key="value">
                         <property class="tesla.scada2.model.properties.ValueProperty" tagname="WaterTemperature" minimumvalue="0.0" maximumvalue="100.0" decimalpos="0"/>
                      </property>
@@ -182,13 +166,7 @@
                </property>
                <scripts/>
             </objectView>
-            <objectView class="tesla.scada2.model.objects.ConeTankView" name="Cone tank1" posx="335.0" posy="700.0" width="325.0" height="289.0" angle="180" lock="false" text="Value" color="0x808080ff" fillcolor="0x0000ffff" type3d="0" fontsize="0">
-               <property key="filling">
-                  <property class="tesla.scada2.model.properties.FillingProperty" tagname="CoffeeInCup" minimumvalue="0.0" maximumvalue="200.0"/>
-               </property>
-               <scripts/>
-            </objectView>
-            <objectView class="tesla.scada2.model.objects.TextView" name="Text/EditField" posx="730.0" posy="76.0" width="126.0" height="89.0" angle="0" lock="false" text="Milk, ml" fonttype="10" fontsize="30" textplacement="1" textcolor="0xffffffff" useborder="false" bordercolor="0x000000ff" linewidth="2" fill="false" fillcolor="0xffffffff" underline="false">
+            <objectView class="tesla.scada2.model.objects.TextView" name="Text/EditField" posx="730.0" posy="76.0" width="126.0" height="89.0" angle="0" lock="false" text="Milk" fonttype="10" fontsize="30" textplacement="1" textcolor="0xffffffff" useborder="false" bordercolor="0x000000ff" linewidth="2" fill="false" fillcolor="0xffffffff" underline="false">
                <scripts/>
             </objectView>
             <objectView class="tesla.scada2.model.objects.TextView" name="Text/EditField1" posx="148.0" posy="85.0" width="100.0" height="80.0" angle="0" lock="false" text="Water" fonttype="10" fontsize="30" textplacement="1" textcolor="0x4d66ccff" useborder="false" bordercolor="0x000000ff" linewidth="2" fill="false" fillcolor="0xffffffff" underline="false">
@@ -212,7 +190,13 @@
                </property>
                <scripts/>
             </objectView>
-            <objectView class="tesla.scada2.model.objects.OvalLightButtonView" name="Oval light button" posx="871.0" posy="239.0" width="50.0" height="40.0" angle="0" lock="false" text="ON" textcolor="0xffffffff" fillcolor="0x0000ffff" type3d="0" fonttype="0" fontsize="0" textplacement="1" animation="true" underline="false">
+            <objectView class="tesla.scada2.model.objects.SectorView" name="Sector" posx="406.0" posy="703.0" width="85.0" height="74.0" angle="0" lock="false" color="0x000000ff" linewidth="10" fill="false" fillcolor="0x808080ff" startangle="90.0" rotationangle="180.0">
+               <scripts/>
+            </objectView>
+            <objectView class="tesla.scada2.model.objects.HorizontalTankWithTrendView" name="Horizontal tank with trend" posx="431.0" posy="670.0" width="119.0" height="129.0" angle="0" lock="false" text="Value" color="0x808080ff" fillcolor="0x0000ffff" type3d="0" fontsize="0">
+               <property key="filling">
+                  <property class="tesla.scada2.model.properties.FillingProperty" tagname="CoffeeInCup" minimumvalue="0.0" maximumvalue="200.0"/>
+               </property>
                <scripts/>
             </objectView>
          </objects>
@@ -250,18 +234,21 @@ if (Tags.PowerOn ) {
 			// Tags.CoffeeAdded = 0;
 		}
 	}
+	
 	if(Tags.PumpMilk) {
-		if(Tags.MilkAdded &lt; Tags.MilkToAdd) {
-			Tags.MilkTankQuantity = Tags.MilkTankQuantity - 20;
-			Tags.MilkAdded = Tags.MilkAdded + 20;
-			Tags.CoffeeInCup = Tags.CoffeeInCup + 20;
-		} 
-		else {
-			Tags.PumpMilk = false;
-			// Tags.MilkAdded = 0;
-			Tags.MilkFinished = true;
+	if(Tags.MilkAdded &lt; Tags.MilkToAdd) {
+		Tags.MilkTankQuantity = Tags.MilkTankQuantity - 20;
+		Tags.MilkAdded = Tags.MilkAdded + 20;
+		Tags.CoffeeInCup = Tags.CoffeeInCup + 20;
+	} 
+	else{
+		Tags.PumpMilk = false;
+		// Tags.MilkAdded = 0;
+		Tags.MilkFinished = true;
 		}
 	}
+
+	
 
 	// Boiling Water
 	if (Tags.WaterInBoiler &gt; 0 &amp; Tags.WaterTemperature &lt;= 100) {
@@ -684,7 +671,8 @@ Tags.WaterInBoiler = 0;
 
 Tags.CoffeeInCup = 0;
 
-Tags.Reset = false;</sttext>
+Tags.Reset = false;
+Tags.pourMilk = false;</sttext>
          <opcodes>
             <opcode type="LOAD_CONST" datatype="0">
                <value>false</value>
@@ -820,7 +808,6 @@ Tags.Reset = false;</sttext>
       <tag name="WaterTankQuantity" datatype="3" accessmode="1" initialpv="200" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="true" rawvaluemax="200.0" rawvaluemin="0.0" euvaluemax="200.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="true" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="true" lolimit="50.0" lopriority="500" lomessage="Wanter Quantity is low" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="false" scriptname="" scriptvalue="0.0" scripttype="0" scriptdeadband="0.0" groupname="MainTanks" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
       <tag name="WaterTemperature" datatype="3" accessmode="1" initialpv="0" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="false" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="false" scriptname="" scriptvalue="0.0" scripttype="0" scriptdeadband="0.0" groupname="2ndStage" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
       <tag name="WaterToAdd" datatype="3" accessmode="1" initialpv="0" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="false" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="false" scriptname="" scriptvalue="0.0" scripttype="0" scriptdeadband="0.0" groupname="Recipe" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
-      <tag name="pourMilk" datatype="0" accessmode="1" initialpv="false" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="false" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="false" scriptname="" scriptvalue="0.0" scripttype="0" scriptdeadband="0.0" groupname="" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
    </tags>
    <users/>
    <libraries/>

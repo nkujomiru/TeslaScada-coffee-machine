@@ -10,7 +10,7 @@
                </property>
                <scripts/>
             </objectView>
-            <objectView class="tesla.scada2.model.objects.ConeTankView" name="Cone tank" posx="490.0" posy="140.0" width="160.0" height="160.0" angle="0" lock="false" text="Coffee, g" color="0x808080ff" fillcolor="0xe6e6b3ff" type3d="0" fontsize="0">
+            <objectView class="tesla.scada2.model.objects.ConeTankView" name="Cone tank" posx="493.0" posy="140.0" width="160.0" height="160.0" angle="0" lock="false" text="Coffee, g" color="0x9e6202ff" fillcolor="0xe6e6b3ff" type3d="0" fontsize="0">
                <property key="filling">
                   <property class="tesla.scada2.model.properties.FillingProperty" tagname="CoffeeTankQuantity" minimumvalue="0.0" maximumvalue="500.0"/>
                </property>
@@ -28,7 +28,7 @@
             <objectView class="tesla.scada2.model.objects.ValvePositionView" name="Position valve1" posx="178.0" posy="370.0" width="83.0" height="46.0" angle="270" lock="false" fillcolor="0xd3d3d3ff" type3d="0" indicatorcolor="0x008000ff">
                <scripts/>
             </objectView>
-            <objectView class="tesla.scada2.model.objects.ToggleButtonView" name="Toggle button" posx="29.0" posy="38.0" width="100.0" height="40.0" angle="0" lock="false" text="OFF" textcolor="0x008000ff" fillcolor="0xd3d3d3ff" type3d="0" fonttype="0" fontsize="0" textplacement="1" animation="true" underline="false">
+            <objectView class="tesla.scada2.model.objects.ToggleButtonView" name="Toggle button" posx="25.0" posy="36.0" width="106.0" height="51.0" angle="0" lock="false" text="OFF" textcolor="0x008000ff" fillcolor="0xd3d3d3ff" type3d="1" fonttype="21" fontsize="20" textplacement="1" animation="true" underline="false">
                <property key="indicator">
                   <property class="tesla.scada2.model.properties.IndicatorProperty" tagname="PowerOn" value="true" type="0"/>
                </property>
@@ -38,7 +38,7 @@
                   </property>
                </property>
                <property key="textcolor">
-                  <property class="tesla.scada2.model.properties.TextColorProperty" tagname="PowerOn" value="true" type="0" truecolor="0x000000ff" falsecolor="0x008000ff">
+                  <property class="tesla.scada2.model.properties.TextColorProperty" tagname="PowerOn" value="true" type="0" truecolor="0xff0000ff" falsecolor="0xfeff00ff">
                      <colorrange/>
                   </property>
                </property>
@@ -52,13 +52,13 @@
                </property>
                <scripts/>
             </objectView>
-            <objectView class="tesla.scada2.model.objects.HorizontalTankWithTrendView" name="WaterTank" posx="90.0" posy="150.0" width="230.0" height="220.0" angle="0" lock="false" text="Water. ml" color="0xcce6ffff" fillcolor="0x0034ffff" type3d="0" fontsize="0">
+            <objectView class="tesla.scada2.model.objects.HorizontalTankWithTrendView" name="WaterTank" posx="89.0" posy="150.0" width="230.0" height="220.0" angle="0" lock="false" text="Water. ml" color="0x4d66ccff" fillcolor="0x0034ffff" type3d="0" fontsize="0">
                <property key="filling">
                   <property class="tesla.scada2.model.properties.FillingProperty" tagname="WaterTankQuantity" minimumvalue="0.0" maximumvalue="800.0"/>
                </property>
                <scripts/>
             </objectView>
-            <objectView class="tesla.scada2.model.objects.ButtonView" name="Button" posx="215.0" posy="42.0" width="100.0" height="40.0" angle="0" lock="false" text="Start" textcolor="0xffffffff" fillcolor="0x008000ff" type3d="0" fonttype="0" fontsize="0" textplacement="1" animation="true" underline="false">
+            <objectView class="tesla.scada2.model.objects.ButtonView" name="Button" posx="170.0" posy="39.0" width="112.0" height="47.0" angle="0" lock="false" text="Start" textcolor="0xffffffff" fillcolor="0x008000ff" type3d="1" fonttype="21" fontsize="20" textplacement="1" animation="true" underline="false">
                <property key="buttoncontrol">
                   <property class="tesla.scada2.model.properties.ButtonControlProperty" tagname="PreparingCoffee" functiontype="2" value="0" title="Enter value" screenname="" command=""/>
                </property>
@@ -114,7 +114,7 @@
                </property>
                <scripts/>
             </objectView>
-            <objectView class="tesla.scada2.model.objects.Text3DView" name="Text/EditField 3D" posx="487.0" posy="85.0" width="153.0" height="80.0" angle="0" lock="false" text="Coffee, g" fonttype="0" fontsize="30" textplacement="1" textcolor="0x0000ffff" useborder="false" bordercolor="0x808080ff" linewidth="8" fill="false" fillcolor="0x000000ff" underline="false">
+            <objectView class="tesla.scada2.model.objects.Text3DView" name="Text/EditField 3D" posx="489.0" posy="78.0" width="159.0" height="81.0" angle="0" lock="false" text="Coffee" fonttype="10" fontsize="30" textplacement="1" textcolor="0xb34d1aff" useborder="false" bordercolor="0x808080ff" linewidth="8" fill="false" fillcolor="0x000000ff" underline="false">
                <scripts/>
             </objectView>
             <objectView class="tesla.scada2.model.objects.ValvePositionView" name="Position valve2" posx="767.0" posy="308.0" width="86.0" height="46.0" angle="270" lock="false" fillcolor="0xd3d3d3ff" type3d="0" indicatorcolor="0x008000ff">
@@ -176,9 +176,9 @@
                   </objectView>
                </objects>
             </objectView>
-            <objectView class="tesla.scada2.model.objects.OvalJumpButtonView" name="Oval jump" posx="1050.0" posy="252.0" width="50.0" height="40.0" angle="0" lock="false" text="Screen" textcolor="0xff0000ff" fillcolor="0xd3d3d3ff" type3d="0" fonttype="0" fontsize="0" textplacement="1" animation="true" underline="false">
+            <objectView class="tesla.scada2.model.objects.OvalJumpButtonView" name="Oval jump" posx="313.0" posy="30.0" width="105.0" height="58.0" angle="0" lock="false" text="Reset" textcolor="0xff0000ff" fillcolor="0xd3d3d3ff" type3d="1" fonttype="20" fontsize="20" textplacement="1" animation="true" underline="false">
                <property key="buttoncontrol">
-                  <property class="tesla.scada2.model.properties.ButtonControlProperty" tagname="Reset" functiontype="3" value="0" title="Enter value" command=""/>
+                  <property class="tesla.scada2.model.properties.ButtonControlProperty" tagname="Reset" functiontype="3" value="0" title="Enter value" screenname="" command=""/>
                </property>
                <scripts/>
             </objectView>
@@ -186,6 +186,33 @@
                <property key="filling">
                   <property class="tesla.scada2.model.properties.FillingProperty" tagname="CoffeeInCup" minimumvalue="0.0" maximumvalue="200.0"/>
                </property>
+               <scripts/>
+            </objectView>
+            <objectView class="tesla.scada2.model.objects.TextView" name="Text/EditField" posx="730.0" posy="76.0" width="126.0" height="89.0" angle="0" lock="false" text="Milk, ml" fonttype="10" fontsize="30" textplacement="1" textcolor="0xffffffff" useborder="false" bordercolor="0x000000ff" linewidth="2" fill="false" fillcolor="0xffffffff" underline="false">
+               <scripts/>
+            </objectView>
+            <objectView class="tesla.scada2.model.objects.TextView" name="Text/EditField1" posx="148.0" posy="85.0" width="100.0" height="80.0" angle="0" lock="false" text="Water" fonttype="10" fontsize="30" textplacement="1" textcolor="0x4d66ccff" useborder="false" bordercolor="0x000000ff" linewidth="2" fill="false" fillcolor="0xffffffff" underline="false">
+               <scripts/>
+            </objectView>
+            <objectView class="tesla.scada2.model.objects.RectangleIndicatorView" name="Rectangle Indicator" posx="31.0" posy="466.0" width="28.0" height="29.0" angle="0" lock="false" falsecolor="0xff0000ff" truecolor="0x008000ff" type3d="0">
+               <property key="indicator">
+                  <property class="tesla.scada2.model.properties.IndicatorProperty" tagname="PumpWater" value="0" type="5"/>
+               </property>
+               <scripts/>
+            </objectView>
+            <objectView class="tesla.scada2.model.objects.RectangleIndicatorView" name="Rectangle Indicator1" posx="395.0" posy="400.0" width="31.0" height="30.0" angle="0" lock="false" falsecolor="0xff0000ff" truecolor="0x008000ff" type3d="0">
+               <property key="indicator">
+                  <property class="tesla.scada2.model.properties.IndicatorProperty" tagname="PumpCoffee" value="0" type="5"/>
+               </property>
+               <scripts/>
+            </objectView>
+            <objectView class="tesla.scada2.model.objects.RectangleIndicatorView" name="Rectangle Indicator2" posx="879.0" posy="195.0" width="32.0" height="32.0" angle="0" lock="false" falsecolor="0xff0000ff" truecolor="0x008000ff" type3d="0">
+               <property key="indicator">
+                  <property class="tesla.scada2.model.properties.IndicatorProperty" tagname="PumpMilk" value="0" type="5"/>
+               </property>
+               <scripts/>
+            </objectView>
+            <objectView class="tesla.scada2.model.objects.OvalLightButtonView" name="Oval light button" posx="871.0" posy="239.0" width="50.0" height="40.0" angle="0" lock="false" text="ON" textcolor="0xffffffff" fillcolor="0x0000ffff" type3d="0" fonttype="0" fontsize="0" textplacement="1" animation="true" underline="false">
                <scripts/>
             </objectView>
          </objects>
@@ -277,9 +304,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterAdded</value>
             </opcode>
-            <opcode type="BINARY_LT" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_LT" datatype="-1"/>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>14</value>
             </opcode>
@@ -289,9 +314,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTankQuantity</value>
             </opcode>
-            <opcode type="BINARY_REM" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_REM" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>WaterTankQuantity</value>
             </opcode>
@@ -301,9 +324,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterAdded</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>WaterAdded</value>
             </opcode>
@@ -313,9 +334,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
@@ -340,9 +359,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeAdded</value>
             </opcode>
-            <opcode type="BINARY_LT" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_LT" datatype="-1"/>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>14</value>
             </opcode>
@@ -352,9 +369,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeTankQuantity</value>
             </opcode>
-            <opcode type="BINARY_REM" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_REM" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>CoffeeTankQuantity</value>
             </opcode>
@@ -364,9 +379,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeAdded</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>CoffeeAdded</value>
             </opcode>
@@ -376,9 +389,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeInFilter</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>CoffeeInFilter</value>
             </opcode>
@@ -403,9 +414,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>MilkAdded</value>
             </opcode>
-            <opcode type="BINARY_LT" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_LT" datatype="-1"/>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>14</value>
             </opcode>
@@ -415,9 +424,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>MilkTankQuantity</value>
             </opcode>
-            <opcode type="BINARY_REM" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_REM" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>MilkTankQuantity</value>
             </opcode>
@@ -427,9 +434,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>MilkAdded</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>MilkAdded</value>
             </opcode>
@@ -439,9 +444,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeInCup</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>CoffeeInCup</value>
             </opcode>
@@ -466,21 +469,15 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
-            <opcode type="BINARY_LTE" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_LTE" datatype="-1"/>
             <opcode type="LOAD_CONST" datatype="4">
                <value>0</value>
             </opcode>
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
-            <opcode type="BINARY_GT" datatype="-1">
-               <value></value>
-            </opcode>
-            <opcode type="BINARY_AND" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_GT" datatype="-1"/>
+            <opcode type="BINARY_AND" datatype="-1"/>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>5</value>
             </opcode>
@@ -490,9 +487,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
@@ -502,33 +497,23 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeAdded</value>
             </opcode>
-            <opcode type="BINARY_GTE" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_GTE" datatype="-1"/>
             <opcode type="LOAD_CONST" datatype="4">
                <value>0</value>
             </opcode>
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
-            <opcode type="BINARY_GT" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_GT" datatype="-1"/>
             <opcode type="LOAD_CONST" datatype="4">
                <value>100</value>
             </opcode>
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
-            <opcode type="BINARY_GTE" datatype="-1">
-               <value></value>
-            </opcode>
-            <opcode type="BINARY_AND" datatype="-1">
-               <value></value>
-            </opcode>
-            <opcode type="BINARY_AND" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_GTE" datatype="-1"/>
+            <opcode type="BINARY_AND" datatype="-1"/>
+            <opcode type="BINARY_AND" datatype="-1"/>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>9</value>
             </opcode>
@@ -538,9 +523,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
-            <opcode type="BINARY_REM" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_REM" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
@@ -550,9 +533,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeInCup</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>CoffeeInCup</value>
             </opcode>
@@ -562,21 +543,15 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
-            <opcode type="BINARY_LTE" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_LTE" datatype="-1"/>
             <opcode type="LOAD_CONST" datatype="4">
                <value>100</value>
             </opcode>
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
-            <opcode type="BINARY_GTE" datatype="-1">
-               <value></value>
-            </opcode>
-            <opcode type="BINARY_AND" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_GTE" datatype="-1"/>
+            <opcode type="BINARY_AND" datatype="-1"/>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>3</value>
             </opcode>
@@ -592,21 +567,15 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
-            <opcode type="BINARY_GT" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_GT" datatype="-1"/>
             <opcode type="LOAD_CONST" datatype="4">
                <value>0</value>
             </opcode>
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
-            <opcode type="BINARY_LTE" datatype="-1">
-               <value></value>
-            </opcode>
-            <opcode type="BINARY_AND" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_LTE" datatype="-1"/>
+            <opcode type="BINARY_AND" datatype="-1"/>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>7</value>
             </opcode>
@@ -616,9 +585,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
-            <opcode type="BINARY_REM" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_REM" datatype="-1"/>
             <opcode type="STORE_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
@@ -634,9 +601,7 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeFinished</value>
             </opcode>
-            <opcode type="BINARY_AND" datatype="-1">
-               <value></value>
-            </opcode>
+            <opcode type="BINARY_AND" datatype="-1"/>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>3</value>
             </opcode>
@@ -855,6 +820,7 @@ Tags.Reset = false;</sttext>
       <tag name="WaterTankQuantity" datatype="3" accessmode="1" initialpv="200" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="true" rawvaluemax="200.0" rawvaluemin="0.0" euvaluemax="200.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="true" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="true" lolimit="50.0" lopriority="500" lomessage="Wanter Quantity is low" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="false" scriptname="" scriptvalue="0.0" scripttype="0" scriptdeadband="0.0" groupname="MainTanks" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
       <tag name="WaterTemperature" datatype="3" accessmode="1" initialpv="0" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="false" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="false" scriptname="" scriptvalue="0.0" scripttype="0" scriptdeadband="0.0" groupname="2ndStage" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
       <tag name="WaterToAdd" datatype="3" accessmode="1" initialpv="0" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="false" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="false" scriptname="" scriptvalue="0.0" scripttype="0" scriptdeadband="0.0" groupname="Recipe" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
+      <tag name="pourMilk" datatype="0" accessmode="1" initialpv="false" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="false" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="false" scriptname="" scriptvalue="0.0" scripttype="0" scriptdeadband="0.0" groupname="" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
    </tags>
    <users/>
    <libraries/>

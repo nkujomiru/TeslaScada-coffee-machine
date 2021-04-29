@@ -58,7 +58,7 @@
                </property>
                <scripts/>
             </objectView>
-            <objectView class="tesla.scada2.model.objects.ButtonView" name="Button" posx="170.0" posy="32.0" width="112.0" height="47.0" angle="0" lock="false" text="Start" textcolor="0xffffffff" fillcolor="0x008000ff" type3d="1" fonttype="21" fontsize="20" textplacement="1" animation="true" underline="false">
+            <objectView class="tesla.scada2.model.objects.ButtonView" name="Button" posx="170.0" posy="38.0" width="112.0" height="47.0" angle="0" lock="false" text="Start" textcolor="0xffffffff" fillcolor="0x008000ff" type3d="1" fonttype="21" fontsize="20" textplacement="1" animation="true" underline="false">
                <property key="fillcolor">
                   <property class="tesla.scada2.model.properties.FillColorProperty" tagname="PreparingCoffee" value="0" type="5" truecolor="0xe6e699ff" falsecolor="0x008000ff">
                      <colorrange/>
@@ -900,7 +900,7 @@ Tags.Reset = false;</sttext>
                <value>false</value>
             </opcode>
             <opcode type="STORE_TAG" datatype="-1">
-               <value>StartPreparingCoffee</value>
+               <value>PreparingCoffee</value>
             </opcode>
             <opcode type="LOAD_CONST" datatype="4">
                <value>150</value>

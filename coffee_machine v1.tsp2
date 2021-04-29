@@ -59,6 +59,11 @@
                <scripts/>
             </objectView>
             <objectView class="tesla.scada2.model.objects.ButtonView" name="Button" posx="170.0" posy="39.0" width="112.0" height="47.0" angle="0" lock="false" text="Start" textcolor="0xffffffff" fillcolor="0x008000ff" type3d="1" fonttype="21" fontsize="20" textplacement="1" animation="true" underline="false">
+               <property key="fillcolor">
+                  <property class="tesla.scada2.model.properties.FillColorProperty" tagname="PreparingCoffee" value="0" type="5" truecolor="0xe6e699ff" falsecolor="0x008000ff">
+                     <colorrange/>
+                  </property>
+               </property>
                <property key="buttoncontrol">
                   <property class="tesla.scada2.model.properties.ButtonControlProperty" tagname="PreparingCoffee" functiontype="2" value="0" title="Enter value" screenname="" command=""/>
                </property>
@@ -199,6 +204,24 @@
                </property>
                <scripts/>
             </objectView>
+            <objectView class="tesla.scada2.model.objects.PressButtonView" name="Empty Cup" posx="557.0" posy="679.0" width="100.0" height="40.0" angle="0" lock="false" text="Empty Cup" textcolor="0xffffffff" fillcolor="0x0000ffff" type3d="0" fonttype="0" fontsize="0" textplacement="1" animation="true" underline="false">
+               <property key="buttoncontrol">
+                  <property class="tesla.scada2.model.properties.ButtonControlProperty" tagname="EmptyCup" functiontype="3" value="0" title="Enter value" command=""/>
+               </property>
+               <scripts/>
+            </objectView>
+            <objectView class="tesla.scada2.model.objects.OvalLightButtonView" name="LightCofee recipe" posx="499.0" posy="28.0" width="149.0" height="40.0" angle="0" lock="false" text="Light" textcolor="0xffffffff" fillcolor="0xcab563ff" type3d="0" fonttype="0" fontsize="0" textplacement="1" animation="true" underline="false">
+               <property key="buttoncontrol">
+                  <property class="tesla.scada2.model.properties.ButtonControlProperty" tagname="LightRecipe" functiontype="3" value="0" title="Enter value" command=""/>
+               </property>
+               <scripts/>
+            </objectView>
+            <objectView class="tesla.scada2.model.objects.OvalLightButtonView" name="Dark Coffee Recipe" posx="673.0" posy="27.0" width="149.0" height="40.0" angle="0" lock="false" text="Dark" textcolor="0xffffffff" fillcolor="0x3c361dff" type3d="0" fonttype="0" fontsize="0" textplacement="1" animation="true" underline="false">
+               <property key="buttoncontrol">
+                  <property class="tesla.scada2.model.properties.ButtonControlProperty" tagname="DarkRecipe" functiontype="3" value="0" title="Enter value" command=""/>
+               </property>
+               <scripts/>
+            </objectView>
          </objects>
          <scriptnames/>
       </window>
@@ -246,6 +269,85 @@ if (Tags.PowerOn ) {
 		// Tags.MilkAdded = 0;
 		Tags.MilkFinished = true;
 		}
+
+if (Tags.PowerOn ) {
+	// 1st stage
+	if(Tags.PumpWater) {
+		if(Tags.WaterAdded &lt; Tags.WaterToAdd) {
+			Tags.WaterTankQuantity = Tags.WaterTankQuantity - 20;
+			Tags.WaterAdded = Tags.WaterAdded + 20;
+			Tags.WaterInBoiler = Tags.WaterInBoiler + 20;
+		} 
+		else {
+			Tags.PumpWater = false;
+			// Tags.WaterAdded = 0;
+		}
+	}
+
+	if(Tags.PumpCoffee) {
+		if(Tags.CoffeeAdded &lt; Tags.CoffeeToAdd) {
+			Tags.CoffeeTankQuantity = Tags.CoffeeTankQuantity - 2;
+			Tags.CoffeeAdded = Tags.CoffeeAdded + 2;
+			Tags.CoffeeInFilter = Tags.CoffeeInFilter + 2;
+		} 
+		else {
+			Tags.PumpCoffee = false;
+			// Tags.CoffeeAdded = 0;
+		}
+	}
+	
+	if(Tags.PumpMilk) {
+		if(Tags.MilkAdded &lt; Tags.MilkToAdd &amp; !Tags.MilkFinished) {
+			Tags.MilkTankQuantity = Tags.MilkTankQuantity - 20;
+			Tags.MilkAdded = Tags.MilkAdded + 20;
+			Tags.CoffeeInCup = Tags.CoffeeInCup + 20;
+		} 
+		else{
+			Tags.PumpMilk = false;
+			// Tags.MilkAdded = 0;
+			Tags.MilkFinished = true;
+		}
+	}
+
+	
+
+	// Boiling Water
+	if (Tags.WaterInBoiler &gt; 0 &amp; Tags.WaterTemperature &lt;= 100) {
+		Tags.WaterTemperature = Tags.WaterTemperature + 5;
+	}
+	if (Tags.WaterTemperature &gt;= 100 &amp; Tags.WaterInBoiler &gt; 0 &amp; Tags.CoffeeAdded &gt;= Tags.CoffeeToAdd ) {
+		Tags.WaterInBoiler = Tags.WaterInBoiler - 10;
+		Tags.CoffeeInCup = Tags.CoffeeInCup + 10;
+	}
+	if (Tags.WaterTemperature &gt;= 100 &amp; Tags.WaterInBoiler &gt;=0 ) {
+		Tags.PumpMilk = true;
+	}
+	if (Tags.WaterInBoiler &lt;= 0 &amp; Tags.WaterTemperature &gt; 0) {
+		Tags.WaterTemperature = Tags.WaterTemperature - 20; 
+		Tags.CoffeeFinished = true;
+	}
+
+	if (Tags.CoffeeFinished &amp; Tags.MilkFinished){
+		// RESET
+		
+		Tags.PreparingCoffee = false;
+		Tags.WaterToAdd = 150; 
+		Tags.CoffeeToAdd = 20;
+		Tags.MilkToAdd = 10;
+
+		Tags.WaterAdded = 0; 
+		Tags.CoffeeAdded = 0;
+		Tags.MilkAdded = 0;
+
+		Tags.PumpWater = false;
+		Tags.PumpCoffee = false;
+		Tags.PumpMilk = false;
+		Tags.CoffeeInFilter = 0;
+		Tags.WaterInBoiler = 0;
+		Tags.CoffeeFinished = false;
+		Tags.MilkFinished = false;
+	}
+}
 	}
 
 	
@@ -277,7 +379,7 @@ if (Tags.PowerOn ) {
                <value>PowerOn</value>
             </opcode>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
-               <value>128</value>
+               <value>287</value>
             </opcode>
             <opcode type="LOAD_TAG" datatype="-1">
                <value>PumpWater</value>
@@ -291,7 +393,9 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterAdded</value>
             </opcode>
-            <opcode type="BINARY_LT" datatype="-1"/>
+            <opcode type="BINARY_LT" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>14</value>
             </opcode>
@@ -301,7 +405,9 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTankQuantity</value>
             </opcode>
-            <opcode type="BINARY_REM" datatype="-1"/>
+            <opcode type="BINARY_REM" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="STORE_TAG" datatype="-1">
                <value>WaterTankQuantity</value>
             </opcode>
@@ -311,7 +417,9 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterAdded</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1"/>
+            <opcode type="BINARY_ADD" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="STORE_TAG" datatype="-1">
                <value>WaterAdded</value>
             </opcode>
@@ -321,7 +429,9 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1"/>
+            <opcode type="BINARY_ADD" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="STORE_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
@@ -346,7 +456,9 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeAdded</value>
             </opcode>
-            <opcode type="BINARY_LT" datatype="-1"/>
+            <opcode type="BINARY_LT" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>14</value>
             </opcode>
@@ -356,7 +468,9 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeTankQuantity</value>
             </opcode>
-            <opcode type="BINARY_REM" datatype="-1"/>
+            <opcode type="BINARY_REM" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="STORE_TAG" datatype="-1">
                <value>CoffeeTankQuantity</value>
             </opcode>
@@ -366,7 +480,9 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeAdded</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1"/>
+            <opcode type="BINARY_ADD" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="STORE_TAG" datatype="-1">
                <value>CoffeeAdded</value>
             </opcode>
@@ -376,7 +492,9 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeInFilter</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1"/>
+            <opcode type="BINARY_ADD" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="STORE_TAG" datatype="-1">
                <value>CoffeeInFilter</value>
             </opcode>
@@ -393,7 +511,7 @@ if (Tags.PowerOn ) {
                <value>PumpMilk</value>
             </opcode>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
-               <value>22</value>
+               <value>181</value>
             </opcode>
             <opcode type="LOAD_TAG" datatype="-1">
                <value>MilkToAdd</value>
@@ -401,7 +519,9 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>MilkAdded</value>
             </opcode>
-            <opcode type="BINARY_LT" datatype="-1"/>
+            <opcode type="BINARY_LT" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>14</value>
             </opcode>
@@ -411,7 +531,9 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>MilkTankQuantity</value>
             </opcode>
-            <opcode type="BINARY_REM" datatype="-1"/>
+            <opcode type="BINARY_REM" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="STORE_TAG" datatype="-1">
                <value>MilkTankQuantity</value>
             </opcode>
@@ -421,7 +543,9 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>MilkAdded</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1"/>
+            <opcode type="BINARY_ADD" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="STORE_TAG" datatype="-1">
                <value>MilkAdded</value>
             </opcode>
@@ -431,7 +555,222 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeInCup</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1"/>
+            <opcode type="BINARY_ADD" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>CoffeeInCup</value>
+            </opcode>
+            <opcode type="JUMP" datatype="-1">
+               <value>5</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="0">
+               <value>false</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>PumpMilk</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="0">
+               <value>true</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>MilkFinished</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>PowerOn</value>
+            </opcode>
+            <opcode type="JUMP_IF_FALSE" datatype="-1">
+               <value>158</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>PumpWater</value>
+            </opcode>
+            <opcode type="JUMP_IF_FALSE" datatype="-1">
+               <value>20</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>WaterToAdd</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>WaterAdded</value>
+            </opcode>
+            <opcode type="BINARY_LT" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="JUMP_IF_FALSE" datatype="-1">
+               <value>14</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>20</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>WaterTankQuantity</value>
+            </opcode>
+            <opcode type="BINARY_REM" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>WaterTankQuantity</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>20</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>WaterAdded</value>
+            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>WaterAdded</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>20</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>WaterInBoiler</value>
+            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>WaterInBoiler</value>
+            </opcode>
+            <opcode type="JUMP" datatype="-1">
+               <value>3</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="0">
+               <value>false</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>PumpWater</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>PumpCoffee</value>
+            </opcode>
+            <opcode type="JUMP_IF_FALSE" datatype="-1">
+               <value>20</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>CoffeeToAdd</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>CoffeeAdded</value>
+            </opcode>
+            <opcode type="BINARY_LT" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="JUMP_IF_FALSE" datatype="-1">
+               <value>14</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>2</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>CoffeeTankQuantity</value>
+            </opcode>
+            <opcode type="BINARY_REM" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>CoffeeTankQuantity</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>2</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>CoffeeAdded</value>
+            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>CoffeeAdded</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>2</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>CoffeeInFilter</value>
+            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>CoffeeInFilter</value>
+            </opcode>
+            <opcode type="JUMP" datatype="-1">
+               <value>3</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="0">
+               <value>false</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>PumpCoffee</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>PumpMilk</value>
+            </opcode>
+            <opcode type="JUMP_IF_FALSE" datatype="-1">
+               <value>26</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>MilkFinished</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="0">
+               <value>true</value>
+            </opcode>
+            <opcode type="BINARY_XOR" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>MilkToAdd</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>MilkAdded</value>
+            </opcode>
+            <opcode type="BINARY_LT" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="BINARY_AND" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="JUMP_IF_FALSE" datatype="-1">
+               <value>14</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>20</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>MilkTankQuantity</value>
+            </opcode>
+            <opcode type="BINARY_REM" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>MilkTankQuantity</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>20</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>MilkAdded</value>
+            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>MilkAdded</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>20</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>CoffeeInCup</value>
+            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="STORE_TAG" datatype="-1">
                <value>CoffeeInCup</value>
             </opcode>
@@ -456,15 +795,21 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
-            <opcode type="BINARY_LTE" datatype="-1"/>
+            <opcode type="BINARY_LTE" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="LOAD_CONST" datatype="4">
                <value>0</value>
             </opcode>
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
-            <opcode type="BINARY_GT" datatype="-1"/>
-            <opcode type="BINARY_AND" datatype="-1"/>
+            <opcode type="BINARY_GT" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="BINARY_AND" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>5</value>
             </opcode>
@@ -474,7 +819,9 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1"/>
+            <opcode type="BINARY_ADD" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="STORE_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
@@ -484,23 +831,33 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeAdded</value>
             </opcode>
-            <opcode type="BINARY_GTE" datatype="-1"/>
+            <opcode type="BINARY_GTE" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="LOAD_CONST" datatype="4">
                <value>0</value>
             </opcode>
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
-            <opcode type="BINARY_GT" datatype="-1"/>
+            <opcode type="BINARY_GT" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="LOAD_CONST" datatype="4">
                <value>100</value>
             </opcode>
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
-            <opcode type="BINARY_GTE" datatype="-1"/>
-            <opcode type="BINARY_AND" datatype="-1"/>
-            <opcode type="BINARY_AND" datatype="-1"/>
+            <opcode type="BINARY_GTE" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="BINARY_AND" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="BINARY_AND" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>9</value>
             </opcode>
@@ -510,7 +867,9 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
-            <opcode type="BINARY_REM" datatype="-1"/>
+            <opcode type="BINARY_REM" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="STORE_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
@@ -520,7 +879,9 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeInCup</value>
             </opcode>
-            <opcode type="BINARY_ADD" datatype="-1"/>
+            <opcode type="BINARY_ADD" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="STORE_TAG" datatype="-1">
                <value>CoffeeInCup</value>
             </opcode>
@@ -530,15 +891,21 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
-            <opcode type="BINARY_LTE" datatype="-1"/>
+            <opcode type="BINARY_GTE" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="LOAD_CONST" datatype="4">
                <value>100</value>
             </opcode>
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
-            <opcode type="BINARY_GTE" datatype="-1"/>
-            <opcode type="BINARY_AND" datatype="-1"/>
+            <opcode type="BINARY_GTE" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="BINARY_AND" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>3</value>
             </opcode>
@@ -554,15 +921,21 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
-            <opcode type="BINARY_GT" datatype="-1"/>
+            <opcode type="BINARY_GT" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="LOAD_CONST" datatype="4">
                <value>0</value>
             </opcode>
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
-            <opcode type="BINARY_LTE" datatype="-1"/>
-            <opcode type="BINARY_AND" datatype="-1"/>
+            <opcode type="BINARY_LTE" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="BINARY_AND" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>7</value>
             </opcode>
@@ -572,7 +945,9 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
-            <opcode type="BINARY_REM" datatype="-1"/>
+            <opcode type="BINARY_REM" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="STORE_TAG" datatype="-1">
                <value>WaterTemperature</value>
             </opcode>
@@ -588,7 +963,273 @@ if (Tags.PowerOn ) {
             <opcode type="LOAD_TAG" datatype="-1">
                <value>CoffeeFinished</value>
             </opcode>
-            <opcode type="BINARY_AND" datatype="-1"/>
+            <opcode type="BINARY_AND" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="JUMP_IF_FALSE" datatype="-1">
+               <value>29</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="0">
+               <value>false</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>PreparingCoffee</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>150</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>WaterToAdd</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>20</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>CoffeeToAdd</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>10</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>MilkToAdd</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>0</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>WaterAdded</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>0</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>CoffeeAdded</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>0</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>MilkAdded</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="0">
+               <value>false</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>PumpWater</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="0">
+               <value>false</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>PumpCoffee</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="0">
+               <value>false</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>PumpMilk</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>0</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>CoffeeInFilter</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>0</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>WaterInBoiler</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="0">
+               <value>false</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>CoffeeFinished</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="0">
+               <value>false</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>MilkFinished</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>100</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>WaterTemperature</value>
+            </opcode>
+            <opcode type="BINARY_LTE" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>0</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>WaterInBoiler</value>
+            </opcode>
+            <opcode type="BINARY_GT" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="BINARY_AND" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="JUMP_IF_FALSE" datatype="-1">
+               <value>5</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>5</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>WaterTemperature</value>
+            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>WaterTemperature</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>CoffeeToAdd</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>CoffeeAdded</value>
+            </opcode>
+            <opcode type="BINARY_GTE" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>0</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>WaterInBoiler</value>
+            </opcode>
+            <opcode type="BINARY_GT" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>100</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>WaterTemperature</value>
+            </opcode>
+            <opcode type="BINARY_GTE" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="BINARY_AND" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="BINARY_AND" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="JUMP_IF_FALSE" datatype="-1">
+               <value>9</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>10</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>WaterInBoiler</value>
+            </opcode>
+            <opcode type="BINARY_REM" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>WaterInBoiler</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>10</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>CoffeeInCup</value>
+            </opcode>
+            <opcode type="BINARY_ADD" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>CoffeeInCup</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>0</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>WaterInBoiler</value>
+            </opcode>
+            <opcode type="BINARY_LTE" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>100</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>WaterTemperature</value>
+            </opcode>
+            <opcode type="BINARY_GTE" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="BINARY_AND" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="JUMP_IF_FALSE" datatype="-1">
+               <value>3</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="0">
+               <value>true</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>PumpMilk</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>0</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>WaterTemperature</value>
+            </opcode>
+            <opcode type="BINARY_GT" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>0</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>WaterInBoiler</value>
+            </opcode>
+            <opcode type="BINARY_LTE" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="BINARY_AND" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="JUMP_IF_FALSE" datatype="-1">
+               <value>7</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>20</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>WaterTemperature</value>
+            </opcode>
+            <opcode type="BINARY_REM" datatype="-1">
+               <value></value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>WaterTemperature</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="0">
+               <value>true</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>CoffeeFinished</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>MilkFinished</value>
+            </opcode>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>CoffeeFinished</value>
+            </opcode>
+            <opcode type="BINARY_AND" datatype="-1">
+               <value></value>
+            </opcode>
             <opcode type="JUMP_IF_FALSE" datatype="-1">
                <value>3</value>
             </opcode>
@@ -605,13 +1246,25 @@ if (Tags.PowerOn ) {
          <links/>
          <sttext>
 // Set recipe values
-
+if (Tags.LightRecipe) {
+	
 Tags.CoffeeToAdd = 20;
 Tags.MilkToAdd = 10;
-Tags.WaterToAdd = 150; 
-Tags.PumpWater = true;
-Tags.PumpCoffee = true;</sttext>
+Tags.WaterToAdd = 150;
+}
+
+if (Tags.DarkRecipe) {
+Tags.CoffeeToAdd = 40;
+Tags.MilkToAdd = 0;
+Tags.WaterToAdd = 100;
+}</sttext>
          <opcodes>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>LightRecipe</value>
+            </opcode>
+            <opcode type="JUMP_IF_FALSE" datatype="-1">
+               <value>7</value>
+            </opcode>
             <opcode type="LOAD_CONST" datatype="4">
                <value>20</value>
             </opcode>
@@ -630,17 +1283,29 @@ Tags.PumpCoffee = true;</sttext>
             <opcode type="STORE_TAG" datatype="-1">
                <value>WaterToAdd</value>
             </opcode>
-            <opcode type="LOAD_CONST" datatype="0">
-               <value>true</value>
+            <opcode type="LOAD_TAG" datatype="-1">
+               <value>DarkRecipe</value>
+            </opcode>
+            <opcode type="JUMP_IF_FALSE" datatype="-1">
+               <value>7</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>40</value>
             </opcode>
             <opcode type="STORE_TAG" datatype="-1">
-               <value>PumpWater</value>
+               <value>CoffeeToAdd</value>
             </opcode>
-            <opcode type="LOAD_CONST" datatype="0">
-               <value>true</value>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>0</value>
             </opcode>
             <opcode type="STORE_TAG" datatype="-1">
-               <value>PumpCoffee</value>
+               <value>MilkToAdd</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>100</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>WaterToAdd</value>
             </opcode>
          </opcodes>
       </script>
@@ -648,38 +1313,29 @@ Tags.PumpCoffee = true;</sttext>
          <objects/>
          <links/>
          <sttext>
-Tags.PowerOn = false;
+
 Tags.PreparingCoffee = false;
 Tags.WaterToAdd = 150; 
 Tags.CoffeeToAdd = 20;
 Tags.MilkToAdd = 10;
 
-Tags.WaterTankQuantity = 400; 
-Tags.CoffeeTankQuantity = 100;
-Tags.MilkTankQuantity = 200;
+Tags.CoffeeTankQuantity = 440;
+Tags.MilkTankQuantity = 180;
+Tags.WaterTankQuantity = 440;
 
 Tags.WaterAdded = 0; 
 Tags.CoffeeAdded = 0;
 Tags.MilkAdded = 0;
-
 
 Tags.PumpWater = false;
 Tags.PumpCoffee = false;
 Tags.PumpMilk = false;
 Tags.CoffeeInFilter = 0;
 Tags.WaterInBoiler = 0;
-
-Tags.CoffeeInCup = 0;
-
-Tags.Reset = false;
-Tags.pourMilk = false;</sttext>
+Tags.CoffeeFinished = false;
+Tags.MilkFinished = false;
+Tags.Reset = false;</sttext>
          <opcodes>
-            <opcode type="LOAD_CONST" datatype="0">
-               <value>false</value>
-            </opcode>
-            <opcode type="STORE_TAG" datatype="-1">
-               <value>PowerOn</value>
-            </opcode>
             <opcode type="LOAD_CONST" datatype="0">
                <value>false</value>
             </opcode>
@@ -705,22 +1361,22 @@ Tags.pourMilk = false;</sttext>
                <value>MilkToAdd</value>
             </opcode>
             <opcode type="LOAD_CONST" datatype="4">
-               <value>400</value>
-            </opcode>
-            <opcode type="STORE_TAG" datatype="-1">
-               <value>WaterTankQuantity</value>
-            </opcode>
-            <opcode type="LOAD_CONST" datatype="4">
-               <value>100</value>
+               <value>440</value>
             </opcode>
             <opcode type="STORE_TAG" datatype="-1">
                <value>CoffeeTankQuantity</value>
             </opcode>
             <opcode type="LOAD_CONST" datatype="4">
-               <value>200</value>
+               <value>180</value>
             </opcode>
             <opcode type="STORE_TAG" datatype="-1">
                <value>MilkTankQuantity</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>440</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>WaterTankQuantity</value>
             </opcode>
             <opcode type="LOAD_CONST" datatype="4">
                <value>0</value>
@@ -770,17 +1426,36 @@ Tags.pourMilk = false;</sttext>
             <opcode type="STORE_TAG" datatype="-1">
                <value>WaterInBoiler</value>
             </opcode>
-            <opcode type="LOAD_CONST" datatype="4">
-               <value>0</value>
+            <opcode type="LOAD_CONST" datatype="0">
+               <value>false</value>
             </opcode>
             <opcode type="STORE_TAG" datatype="-1">
-               <value>CoffeeInCup</value>
+               <value>CoffeeFinished</value>
+            </opcode>
+            <opcode type="LOAD_CONST" datatype="0">
+               <value>false</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>MilkFinished</value>
             </opcode>
             <opcode type="LOAD_CONST" datatype="0">
                <value>false</value>
             </opcode>
             <opcode type="STORE_TAG" datatype="-1">
                <value>Reset</value>
+            </opcode>
+         </opcodes>
+      </script>
+      <script name="EmptyCup" color="0xd3d3d3ff" type="2" windowheight="600" windowwidth="800" groupname="" subgroupname="" language="1" everycycle="false" extype="0">
+         <objects/>
+         <links/>
+         <sttext>Tags.CoffeeInCup = 0;</sttext>
+         <opcodes>
+            <opcode type="LOAD_CONST" datatype="4">
+               <value>0</value>
+            </opcode>
+            <opcode type="STORE_TAG" datatype="-1">
+               <value>CoffeeInCup</value>
             </opcode>
          </opcodes>
       </script>
@@ -793,6 +1468,9 @@ Tags.pourMilk = false;</sttext>
       <tag name="CoffeeInFilter" datatype="3" accessmode="1" initialpv="0" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="false" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="false" scriptname="" scriptvalue="0.0" scripttype="0" scriptdeadband="0.0" groupname="2ndStage" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
       <tag name="CoffeeTankQuantity" datatype="3" accessmode="1" initialpv="500" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="true" storageperiod="10000" storeindb="false" enablealarming="true" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="true" lololimit="50.0" lolopriority="50" lolomessage="Coffee quantity is below 50g" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="false" scriptname="" scriptvalue="0.0" scripttype="0" scriptdeadband="0.0" groupname="MainTanks" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
       <tag name="CoffeeToAdd" datatype="3" accessmode="1" initialpv="0" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="false" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="false" scriptname="" scriptvalue="0.0" scripttype="0" scriptdeadband="0.0" groupname="Recipe" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
+      <tag name="DarkRecipe" datatype="0" accessmode="1" initialpv="false" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="false" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="true" scriptname="SetRecipe" scriptvalue="1.0" scripttype="0" scriptdeadband="0.0" groupname="Button Switches" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
+      <tag name="EmptyCup" datatype="0" accessmode="1" initialpv="false" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="false" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="true" scriptname="EmptyCup" scriptvalue="0.0" scripttype="5" scriptdeadband="0.0" groupname="Button Switches" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
+      <tag name="LightRecipe" datatype="0" accessmode="1" initialpv="false" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="false" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="true" scriptname="SetRecipe" scriptvalue="1.0" scripttype="0" scriptdeadband="0.0" groupname="Button Switches" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
       <tag name="MilkAdded" datatype="3" accessmode="1" initialpv="0" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="false" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="false" scriptname="" scriptvalue="0.0" scripttype="0" scriptdeadband="0.0" groupname="Recipe" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
       <tag name="MilkFinished" datatype="0" accessmode="1" initialpv="false" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="false" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="false" scriptname="" scriptvalue="0.0" scripttype="0" scriptdeadband="0.0" groupname="3rdStage" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
       <tag name="MilkTankQuantity" datatype="3" accessmode="1" initialpv="100" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="true" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="true" storageperiod="10000" storeindb="true" enablealarming="true" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="true" lolimit="50.0" lopriority="500" lomessage="Milk Quantity is low" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="false" scriptname="" scriptvalue="0.0" scripttype="0" scriptdeadband="0.0" groupname="MainTanks" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
@@ -802,7 +1480,7 @@ Tags.pourMilk = false;</sttext>
       <tag name="PumpCoffee" datatype="0" accessmode="1" initialpv="false" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="false" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="false" scriptname="" scriptvalue="0.0" scripttype="0" scriptdeadband="0.0" groupname="1stStage" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
       <tag name="PumpMilk" datatype="0" accessmode="1" initialpv="false" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="false" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="false" scriptname="" scriptvalue="0.0" scripttype="0" scriptdeadband="0.0" groupname="3rdStage" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
       <tag name="PumpWater" datatype="0" accessmode="1" initialpv="false" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="false" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="false" scriptname="" scriptvalue="0.0" scripttype="0" scriptdeadband="0.0" groupname="1stStage" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
-      <tag name="Reset" datatype="0" accessmode="1" initialpv="false" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="false" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="true" scriptname="Reset" scriptvalue="1.0" scripttype="0" scriptdeadband="0.0" groupname="" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
+      <tag name="Reset" datatype="0" accessmode="1" initialpv="false" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="false" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="true" scriptname="Reset" scriptvalue="1.0" scripttype="0" scriptdeadband="0.0" groupname="Button Switches" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
       <tag name="WaterAdded" datatype="3" accessmode="1" initialpv="0" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="false" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="false" scriptname="" scriptvalue="0.0" scripttype="0" scriptdeadband="0.0" groupname="Recipe" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
       <tag name="WaterInBoiler" datatype="3" accessmode="1" initialpv="0" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="false" rawvaluemax="100.0" rawvaluemin="0.0" euvaluemax="100.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="false" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="false" lolimit="0.0" lopriority="500" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="false" scriptname="" scriptvalue="0.0" scripttype="0" scriptdeadband="0.0" groupname="2ndStage" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
       <tag name="WaterTankQuantity" datatype="3" accessmode="1" initialpv="200" numberofelements="10" elementtype="-1" pvinputserver="Local" pvinputsource="" outputdiffers="false" pvoutputserver="Local" pvoutputsource="" enablescaling="true" rawvaluemax="200.0" rawvaluemin="0.0" euvaluemax="200.0" euvaluemin="0.0" offset="0.0" enablehistorizing="false" storageperiod="10000" storeindb="false" enablealarming="true" enablehihi="false" hihilimit="1.0" hihipriority="50" enablehi="false" hilimit="0.0" hipriority="500" enablelo="true" lolimit="50.0" lopriority="500" lomessage="Wanter Quantity is low" enablelolo="false" lololimit="0.0" lolopriority="50" enablenormal="false" normalpriority="900" deadband="0.0" opcuaevent="false" enablescript="false" scriptname="" scriptvalue="0.0" scripttype="0" scriptdeadband="0.0" groupname="MainTanks" subgroupname="" description="" usehistorydeadband="false" historydeadband="0.0"/>
@@ -821,6 +1499,7 @@ Tags.pourMilk = false;</sttext>
       <string>3rdStage</string>
       <string>2ndStage</string>
       <string>MainTanks</string>
+      <string>Button Switches</string>
    </groups>
    <subgroups/>
    <subscreengroups/>
